@@ -64,7 +64,7 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable int productId,@RequestBody Product product){
+    public ResponseEntity<String> updateProduct(@PathVariable("id") int productId,@RequestBody Product product){
 
         Product product1=service.updateProduct(productId,product);;
         
@@ -75,10 +75,10 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int productId){
-        Product product=service.getProductById(productId);
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") int id){
+        Product product=service.getProductById(id);
         if(product!=null){
-            service.deleteProduct(productId);
+            service.deleteProduct(id);
             return new ResponseEntity<>("Deleted",HttpStatus.OK);
         }
         else
